@@ -53,6 +53,10 @@ public class IndexController {
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("posts",dto);
 
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        if (user.getName().equals(dto.getAuthor())){
+            model.addAttribute("editAuth",true);
+        }
         return "posts-detail";
     }
 }
