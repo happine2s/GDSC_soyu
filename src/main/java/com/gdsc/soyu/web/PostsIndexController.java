@@ -45,15 +45,12 @@ public class PostsIndexController {
     }
 
     @GetMapping("/posts/update/{id}")
-    public String postsUpdate(@PathVariable Long id, Model model){
-        PostsResponseDto dto=postsService.findById(id);
-        model.addAttribute("posts",dto);
+    public String postsUpdate(@PathVariable Long id, Model model) {
+        PostsResponseDto dto = postsService.findById(id);
+        model.addAttribute("posts", dto);
 
         return "posts-update";
     }
-<<<<<<< Updated upstream:src/main/java/com/gdsc/soyu/web/IndexController.java
-=======
-
     @GetMapping("/posts/detail/{id}")
     public String postsDetail(@PathVariable Long id, Model model) {
         PostsResponseDto dto = postsService.findById(id);
@@ -71,5 +68,4 @@ public class PostsIndexController {
         model.addAttribute("posts", dto);
         return "posts-detail";
     }
->>>>>>> Stashed changes:src/main/java/com/gdsc/soyu/web/PostsIndexController.java
 }
