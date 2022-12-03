@@ -51,6 +51,7 @@ public class PostsIndexController {
 
         return "posts-update";
     }
+    
     @GetMapping("/posts/detail/{id}")
     public String postsDetail(@PathVariable Long id, Model model) {
         PostsResponseDto dto = postsService.findById(id);
@@ -60,7 +61,9 @@ public class PostsIndexController {
         if (user != null) {
             model.addAttribute("loginUserName", user.getName());
         }
-
+        if (user.getName().equals(dto.getAuthor())){
+            model.addAttribute("editAuth",true);
+        }
         if(comments != null && !comments.isEmpty()){
             model.addAttribute("comments",comments);
         }
