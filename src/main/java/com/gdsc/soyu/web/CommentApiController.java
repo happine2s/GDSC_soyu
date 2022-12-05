@@ -22,6 +22,6 @@ public class CommentApiController {
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         System.out.println(id);
-        return commentService.save(requestDto,id, user.getEmail());
+        return commentService.save(requestDto, id, user.getEmail());
     }
 }

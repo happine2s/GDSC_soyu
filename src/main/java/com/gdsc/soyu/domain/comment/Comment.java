@@ -29,6 +29,7 @@ public class Comment extends BaseTimeEntity {
     @JoinColumn(name="postsId")
     private Posts posts;
 
+
     @Column(nullable = true)
     private String content;
 

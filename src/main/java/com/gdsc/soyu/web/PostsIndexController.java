@@ -1,5 +1,7 @@
 package com.gdsc.soyu.web;
 
+
+import com.gdsc.soyu.config.auth.LoginUser;
 import com.gdsc.soyu.config.auth.dto.SessionUser;
 import com.gdsc.soyu.domain.comment.Comment;
 import com.gdsc.soyu.service.posts.PostsService;
