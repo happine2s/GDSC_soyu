@@ -29,7 +29,8 @@ public class Comment extends BaseTimeEntity {
     @JoinColumn(name="postsId")
     private Posts posts;
 
-    @Column(nullable = false)
+
+    @Column(nullable = true)
     private String content;
 
     @Column(columnDefinition = "boolean default false")

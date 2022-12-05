@@ -13,14 +13,14 @@ public class CommentSaveRequestDto {
     private Long id;
     private Posts posts;
     private User user;
-    private String content;
+    private String comment;
     private Boolean anonymous;
 
     @Builder
     public CommentSaveRequestDto(Posts posts,User user, String content, Boolean anonymous){
         this.posts=posts;
         this.user=user;
-        this.content=content;
+        this.comment=comment;
         this.anonymous=anonymous;
     }
 
@@ -29,7 +29,7 @@ public class CommentSaveRequestDto {
                  .id(id)
                  .posts(posts)
                  .user(user)
-                 .content(content)
+                 .content(comment)
                  .anonymous(anonymous)
                  .build();
     }
