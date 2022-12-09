@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -66,9 +67,9 @@ public class PostsIndexController {
             model.addAttribute("editAuth",true);
         }
         if(comments != null && !comments.isEmpty()){
-            model.addAttribute("comments",comments);
-        }
+            model.addAttribute("comments", comments);
 
+        }
         model.addAttribute("posts", dto);
         return "posts-detail";
     }

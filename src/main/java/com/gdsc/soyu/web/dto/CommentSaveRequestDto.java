@@ -17,7 +17,7 @@ public class CommentSaveRequestDto {
     private Boolean anonymous;
 
     @Builder
-    public CommentSaveRequestDto(Posts posts,User user, String content, Boolean anonymous){
+    public CommentSaveRequestDto(Posts posts, User user, String comment, Boolean anonymous){
         this.posts=posts;
         this.user=user;
         this.comment=comment;
