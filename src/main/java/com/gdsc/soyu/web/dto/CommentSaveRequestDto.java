@@ -15,13 +15,16 @@ public class CommentSaveRequestDto {
     private User user;
     private String comment;
     private Boolean anonymous;
+    private String userName;
 
     @Builder
-    public CommentSaveRequestDto(Posts posts, User user, String comment, Boolean anonymous){
+
+    public CommentSaveRequestDto(Posts posts,User user, String content, Boolean anonymous, String userName){
         this.posts=posts;
         this.user=user;
         this.comment=comment;
         this.anonymous=anonymous;
+        this.userName=userName;
     }
 
     public Comment toEntity(){
@@ -31,6 +34,7 @@ public class CommentSaveRequestDto {
                  .user(user)
                  .content(comment)
                  .anonymous(anonymous)
+                 .userName(userName)
                  .build();
     }
 }

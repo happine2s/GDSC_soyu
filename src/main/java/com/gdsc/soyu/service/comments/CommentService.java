@@ -31,8 +31,7 @@ public class CommentService {
 
         requestDto.setUser(userOptional.get());
         requestDto.setPosts(posts);
-        User commentUser = requestDto.getUser();
-        System.out.println(commentUser.getName() + " "+commentUser);
+        requestDto.setUserName(requestDto.getUser().getName());
 
         Comment comment=requestDto.toEntity();
         commentRepository.save(comment);
