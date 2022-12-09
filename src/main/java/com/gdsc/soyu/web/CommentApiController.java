@@ -2,8 +2,10 @@ package com.gdsc.soyu.web;
 
 import com.gdsc.soyu.config.auth.dto.SessionUser;
 import com.gdsc.soyu.domain.comment.Comment;
+import com.gdsc.soyu.domain.comment.CommentRepository;
 import com.gdsc.soyu.service.comments.CommentService;
 import com.gdsc.soyu.service.posts.PostsService;
+import com.gdsc.soyu.web.dto.CommentResponseDto;
 import com.gdsc.soyu.web.dto.CommentSaveRequestDto;
 import com.gdsc.soyu.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ import java.util.List;
 public class CommentApiController {
     private final CommentService commentService;
     private final PostsService postsService;
+    private final CommentRepository commentRepository;
     private final HttpSession httpSession;
 
     @PostMapping("/{id}/comments")
@@ -35,6 +38,15 @@ public class CommentApiController {
     /* DELETE */
     @DeleteMapping("/{id}/comments/{commentId}")
     public ResponseEntity delete(@PathVariable Long id, @PathVariable Long commentId) {
+//        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+//        Comment comment = commentRepository.findById(id).orElseThrow(() ->
+//                new IllegalArgumentException("해당 댓글이 존재하지 않습니다. id=" + id)
+//        );
+//
+//        if (user.getName().equals(comment.getUser().getName())) {
+//            model.addAttribute("commentEditAuth",true);
+//        }
+
         System.out.println("댓글 id: "+commentId);
         commentService.delete(commentId);
         return ResponseEntity.ok(commentId);
