@@ -6,7 +6,9 @@ import com.gdsc.soyu.domain.posts.Posts;
 import com.gdsc.soyu.domain.posts.PostsRepository;
 import com.gdsc.soyu.domain.user.User;
 import com.gdsc.soyu.domain.user.UserRepository;
+import com.gdsc.soyu.web.dto.CommentResponseDto;
 import com.gdsc.soyu.web.dto.CommentSaveRequestDto;
+import com.gdsc.soyu.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -23,7 +25,7 @@ public class CommentService {
 
     @Transactional
     public Long save(CommentSaveRequestDto requestDto, Long postId, String email){
-        Optional<User> userOptional=userRepository.findByEmail(email);
+        Optional<User> userOptional = userRepository.findByEmail(email);
         Posts posts=postsRepository.findById(postId).orElseThrow(()->
                 new IllegalArgumentException("댓글 쓰기 실패: 해당 게시글이 존재하지 않습니다."+postId));
 
@@ -36,4 +38,14 @@ public class CommentService {
 
         return comment.getId();
     }
+
+    /* DELETE */
+    @Transactional
+    public void delete(Long id) {
+        Comment comment = commentRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("해당 댓글이 존재하지 않습니다. id=" + id));
+
+        commentRepository.delete(comment);
+    }
+
 }
