@@ -9,6 +9,7 @@ import com.gdsc.soyu.domain.user.UserRepository;
 import com.gdsc.soyu.web.dto.CommentSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
@@ -28,6 +29,7 @@ public class CommentService {
 
         requestDto.setUser(userOptional.get());
         requestDto.setPosts(posts);
+        requestDto.setUserName(requestDto.getUser().getName());
 
         Comment comment=requestDto.toEntity();
         commentRepository.save(comment);
