@@ -22,4 +22,6 @@ public class CommentResponseDto {
         this.content=entity.getContent();
         this.anonymous=entity.getAnonymous();
     }
+
+
 }
