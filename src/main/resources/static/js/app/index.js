@@ -18,10 +18,9 @@ var main = {
             _this.commentSave();
         });
 
-        $('.btn-comment-delete').on('click', function () {
-            console.log(e.target.value);
-            _this.commentDelete(e.target.value);
-        })
+        // $('.btn-comment-delete').on('click', function () {
+        //     _this.commentDelete(e.target.value);
+        // })
     },
     save : function () {
         var data = {
@@ -109,27 +108,17 @@ var main = {
 
     commentDelete : function (commentId) {
         var data = {
-            postsId: $('#postsId').val(),
-            postsUser: $('#postsUser').val(),
-            user: $('#commentUser').val()
+            postsId: $('#postsId').val()
         }
-        if (data.user === data.postsUser) {
-            $.ajax({
-                type: 'DELETE',
-                url: '/api/v1/posts/'+ data.postsId + '/comments/'+commentId,
-                dataType: 'json',
-                contentType:'application/json; charset=utf-8'
-            }).done(function() {
-                alert('댓글이 삭제되었습니다.');
-                window.location.reload();
-            }).fail(function (error) {
-                alert(JSON.stringify(error));
-            });
-        } else {
-            alert(data.user+', '+data.postsUser);
-            alert('댓글 삭제 권한이 없습니다.');
-        }
-
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/v1/posts/'+ data.postsId + '/comments/'+commentId,
+            dataType: 'text',
+            contentType:'application/json; charset=utf-8'
+        }).done(function() {
+            alert('댓글이 삭제되었습니다.');
+            window.location.reload();
+        });
     },
 
 
