@@ -14,7 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Id;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -37,18 +39,9 @@ public class CommentApiController {
 
     /* DELETE */
     @DeleteMapping("/{id}/comments/{commentId}")
-    public ResponseEntity delete(@PathVariable Long id, @PathVariable Long commentId) {
-//        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-//        Comment comment = commentRepository.findById(id).orElseThrow(() ->
-//                new IllegalArgumentException("해당 댓글이 존재하지 않습니다. id=" + id)
-//        );
-//
-//        if (user.getName().equals(comment.getUser().getName())) {
-//            model.addAttribute("commentEditAuth",true);
-//        }
-
-        System.out.println("댓글 id: "+commentId);
-        commentService.delete(commentId);
+    public ResponseEntity delete(HttpServletResponse response, @PathVariable Long id, @PathVariable Long commentId) throws IOException {
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        commentService.delete(response, user, commentId);
         return ResponseEntity.ok(commentId);
     }
 }
