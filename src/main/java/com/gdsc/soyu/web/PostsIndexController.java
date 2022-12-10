@@ -1,11 +1,9 @@
 package com.gdsc.soyu.web;
 
 
-import com.gdsc.soyu.config.auth.LoginUser;
 import com.gdsc.soyu.config.auth.dto.SessionUser;
 import com.gdsc.soyu.domain.comment.Comment;
 import com.gdsc.soyu.service.posts.PostsService;
-import com.gdsc.soyu.web.dto.CommentResponseDto;
 import com.gdsc.soyu.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -62,10 +59,16 @@ public class PostsIndexController {
 
         if (user != null) {
             model.addAttribute("loginUserName", user.getName());
+            if (dto.getAuthor().equals(user.getName())) {
+                model.addAttribute("editAuth", true);
+            }
+
+            for (int i = 0; i < comments.size(); i++) {
+                boolean isWriter = comments.get(i).getUser().getId().equals(user.getId());
+                model.addAttribute("isWriter",isWriter);
+            }
         }
-        if (user.getName().equals(dto.getAuthor())){
-            model.addAttribute("editAuth",true);
-        }
+
         if(comments != null && !comments.isEmpty()){
             model.addAttribute("comments", comments);
 
