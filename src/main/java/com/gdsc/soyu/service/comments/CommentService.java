@@ -51,18 +51,11 @@ public class CommentService {
         Comment comment = commentRepository.findById(commentId).orElseThrow(() ->
                 new IllegalArgumentException("해당 댓글이 존재하지 않습니다. id=" + commentId));
 
-        response.setContentType("application/json; charset=utf-8");
-        PrintWriter out = response.getWriter();
-
         if (comment.getUser().getEmail().equals(loginUser.getEmail())){
             commentRepository.delete(comment);
-
-            out.println("<script>alert('댓글이 삭제되었습니다.'); </script>");
-            out.flush();
         }
         else {
-            out.println("<script>alert('댓글 삭제 권한이 없습니다.'); </script>");
-            out.flush();
+            throw new RuntimeException("댓글 삭제 권한이 없습니다.");
         }
     }
 
