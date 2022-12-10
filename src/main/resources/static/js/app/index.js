@@ -113,13 +113,11 @@ var main = {
         $.ajax({
             type: 'DELETE',
             url: '/api/v1/posts/'+ data.postsId + '/comments/'+commentId,
-            dataType: 'json',
+            dataType: 'text',
             contentType:'application/json; charset=utf-8'
         }).done(function() {
-            // alert('댓글이 삭제되었습니다.');
+            alert('댓글이 삭제되었습니다.');
             window.location.reload();
-        }).fail(function (error) {
-            alert(JSON.stringify(error));
         });
     },
 

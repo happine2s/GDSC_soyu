@@ -17,6 +17,8 @@ import javax.persistence.Id;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.InvalidObjectException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -39,9 +41,9 @@ public class CommentApiController {
 
     /* DELETE */
     @DeleteMapping("/{id}/comments/{commentId}")
-    public ResponseEntity delete(HttpServletResponse response, @PathVariable Long id, @PathVariable Long commentId) throws IOException {
+    public void delete(HttpServletResponse response, @PathVariable Long id, @PathVariable Long commentId) throws IOException {
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
         commentService.delete(response, user, commentId);
-        return ResponseEntity.ok(commentId);
+
     }
 }
