@@ -14,11 +14,12 @@ public class CommentResponseDto {
     private User user;
     private String content;
     private Boolean anonymous;
+    private Long userId;
 
     public CommentResponseDto(Comment entity){
         this.id=entity.getId();
         this.postsId=entity.getPosts().getId();
-        this.user=entity.getUser();
+        this.userId=entity.getUserId();
         this.content=entity.getContent();
         this.anonymous=entity.getAnonymous();
     }

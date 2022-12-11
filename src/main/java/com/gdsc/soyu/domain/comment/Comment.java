@@ -21,15 +21,14 @@ public class Comment extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "userId")
-    private User user;
+    @Column
+    private Long userId;
 
     @Column
     private String userName;
 
     @ManyToOne
-    @JoinColumn(name="postsId")
+    @JoinColumn(name="posts")
     private Posts posts;
 
 
