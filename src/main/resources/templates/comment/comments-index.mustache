@@ -7,15 +7,14 @@
         {{#comments}}
             <li id="comment-list-group" class="list-group-item">
                 <span>
-                    <span style="font-size: small">{{userName}}</span>
-                    <!--<button class="btn btn-primary"> 수정</button>-->
+                    <span style="font-size: small" id="comment-user">{{userName}}</span>
                     <input type="hidden" id="postsId" value="{{posts.id}}">
                     <input type="hidden" id="commentId" value="{{id}}">
                     <input type="hidden" id="isWriter" value="{{isWriter}}">
                     <input type="hidden" id="sessionUserName" value="{{loginUserName}}">
                     <button class="btn btn-danger btn-comment-delete" id="btn-comment-delete" value="{{id}}" onclick="main.commentDelete({{id}},{{isWriter}})"> 삭제</button>
                 </span>
-                <div id="comment-content">{{content}}</div>
+                <div id="comment-content" onclick="alert('{{userName}}')">{{content}}</div>
             </li>
         {{/comments}}
     </ul>

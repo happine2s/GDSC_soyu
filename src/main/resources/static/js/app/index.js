@@ -18,10 +18,9 @@ var main = {
             _this.commentSave();
         });
 
-        $('.btn-comment-delete').on('click', function () {
-            console.log(e.target.value);
-            _this.commentDelete(e.target.value);
-        })
+        // $('.btn-comment-delete').on('click', function () {
+        //     _this.commentDelete(e.target.value);
+        // })
     },
     save : function () {
         var data = {
@@ -133,6 +132,7 @@ var main = {
         else{
             alert("본인이 작성한 댓글만 삭제 가능합니다.");
         }
+
     },
 
 
