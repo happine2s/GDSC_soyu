@@ -18,15 +18,9 @@ var main = {
             _this.commentSave();
         });
 
-<<<<<<< Updated upstream
-        // $('.btn-comment-delete').on('click', function () {
-        //     _this.commentDelete(e.target.value);
-        // })
-=======
         $('#btn-comment-delete').on('click', function () {
             _this.commentDelete(e.target.value);
         })
->>>>>>> Stashed changes
     },
     save : function () {
         var data = {

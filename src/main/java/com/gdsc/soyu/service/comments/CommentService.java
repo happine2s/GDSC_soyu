@@ -46,16 +46,9 @@ public class CommentService {
 
     /* DELETE */
     @Transactional
-    public void delete(HttpServletResponse response, SessionUser loginUser, Long commentId) throws IOException {
+    public void delete(Long commentId){
         Comment comment = commentRepository.findById(commentId).orElseThrow(() ->
                 new IllegalArgumentException("해당 댓글이 존재하지 않습니다. id=" + commentId));
-
-        if (comment.getUser().getEmail().equals(loginUser.getEmail())){
-            commentRepository.delete(comment);
-        }
-        else {
-            throw new RuntimeException("댓글 삭제 권한이 없습니다.");
-        }
+        commentRepository.delete(comment);
     }
-
 }
