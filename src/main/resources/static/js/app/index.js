@@ -106,19 +106,33 @@ var main = {
         }
     },
 
-    commentDelete : function (commentId) {
+    commentDelete : function (commentId,isWriter) {
         var data = {
-            postsId: $('#postsId').val()
+            postsId: $('#postsId').val(),
+            commentId: $('#commentId').val(),
+            isWriter: $('#isWriter').value,
+            sessionUserName: $('#sessionUserName').value
         }
-        $.ajax({
-            type: 'DELETE',
-            url: '/api/v1/posts/'+ data.postsId + '/comments/'+commentId,
-            dataType: 'text',
-            contentType:'application/json; charset=utf-8'
-        }).done(function() {
-            alert('댓글이 삭제되었습니다.');
-            window.location.reload();
-        });
+        console.log("isWriter : " + data.isWriter);
+        console.log("sessionUserName : " + data.sessionUserName);
+
+        if (isWriter===true) {
+            $.ajax({
+                type: 'DELETE',
+                url: '/api/v1/posts/'+ data.postsId + '/comments/'+commentId,
+                dataType: 'json',
+                contentType:'application/json; charset=utf-8'
+            }).done(function() {
+                alert('댓글이 삭제되었습니다.');
+                window.location.reload();
+            }).fail(function (error) {
+                alert(JSON.stringify(error));
+            });
+        }
+        else{
+            alert("본인이 작성한 댓글만 삭제 가능합니다.");
+        }
+
     },
 
 

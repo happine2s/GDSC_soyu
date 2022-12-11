@@ -33,17 +33,12 @@ public class CommentApiController {
     @PostMapping("/{id}/comments")
     public Long CommentsSave(@PathVariable Long id, @RequestBody CommentSaveRequestDto requestDto){
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
-
-        System.out.println(id);
-
         return commentService.save(requestDto, id, user.getEmail());
     }
 
-    /* DELETE */
     @DeleteMapping("/{id}/comments/{commentId}")
-    public void delete(HttpServletResponse response, @PathVariable Long id, @PathVariable Long commentId) throws IOException {
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        commentService.delete(response, user, commentId);
-
+    public ResponseEntity delete(@PathVariable Long id, @PathVariable Long commentId) {
+        commentService.delete(commentId);
+        return ResponseEntity.ok(commentId);
     }
 }
