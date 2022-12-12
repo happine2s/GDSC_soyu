@@ -35,6 +35,5 @@ public class Comment extends BaseTimeEntity {
     @Column(nullable = true)
     private String content;
 
-    @Column(columnDefinition = "boolean default false")
     private Boolean anonymous;
 }

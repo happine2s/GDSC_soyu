@@ -136,6 +136,9 @@ var main = {
                 alert(JSON.stringify(error));
             });
         }
+        else if(data.commentUserId==0){
+            alert("익명 댓글은 삭제할 수 없습니다.");
+        }
         else{
             alert("본인이 작성한 댓글만 삭제 가능합니다.");
         }
