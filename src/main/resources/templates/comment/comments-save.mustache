@@ -6,6 +6,8 @@
         <input type="hidden" id="postsId" value="{{posts.id}}">
         {{#loginUserName}}
             <div class="card-body">
+                <input type="checkbox" id="anonymous" name="anonymous">
+                <label for="comments-anonymous"> 익명</label>
                 <textarea id="comment" class="form-control" rows="4" placeholder="댓글을 입력하세요"></textarea>
             </div>
             <div class="card-footer">
