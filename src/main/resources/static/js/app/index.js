@@ -81,10 +81,16 @@ var main = {
 
     /** 댓글 저장 */
     commentSave : function () {
+        var anonymous=false;
+        if ($('#anonymous').is(":checked")){
+            anonymous=true;
+        }
         var data = {
             postsId: $('#postsId').val(),
-            comment: $('#comment').val()
+            comment: $('#comment').val(),
+            anonymous: anonymous
         }
+        console.log(anonymous);
 
         // 공백 및 빈 문자열 체크
         if (!data.comment || data.comment.trim() === "") {

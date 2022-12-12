@@ -30,17 +30,14 @@ public class CommentService {
     private final UserRepository userRepository;
 
     @Transactional
-    public Long save(CommentSaveRequestDto requestDto, Long postId, Long userId){
+    public Long save(CommentSaveRequestDto requestDto, Long userId){
         Optional<User> userOptional = userRepository.findById(userId);
         Posts posts=postsRepository.findById(postId).orElseThrow(()->
                 new IllegalArgumentException("댓글 쓰기 실패: 해당 게시글이 존재하지 않습니다."+postId));
-        //System.out.println(requestDto);
         requestDto.setUserId(userId);
-        requestDto.setPosts(posts);
         requestDto.setUserName(userOptional.get().getName());
-        Comment comment=requestDto.toEntity();
+        Comment comment =requestDto.toEntity();
         commentRepository.save(comment);
-
         return comment.getId();
     }
 
