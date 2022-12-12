@@ -12,17 +12,17 @@ import lombok.*;
 public class CommentSaveRequestDto {
     private Long id;
     private Posts posts;
-    private User user;
+    private Long userId;
     private String content;
     private Boolean anonymous;
     private String userName;
 
     @Builder
 
-    public CommentSaveRequestDto(Posts posts,User user, String content, Boolean anonymous, String userName){
+    public CommentSaveRequestDto(Posts posts,Long userId, String content, Boolean anonymous, String userName){
         this.posts=posts;
-        this.user=user;
         this.content=content;
+        this.userId=userId;
         this.anonymous=anonymous;
         this.userName=userName;
     }
@@ -31,8 +31,8 @@ public class CommentSaveRequestDto {
          return Comment.builder()
                  .id(id)
                  .posts(posts)
-                 .user(user)
                  .content(content)
+                 .userId(userId)
                  .anonymous(anonymous)
                  .userName(userName)
                  .build();

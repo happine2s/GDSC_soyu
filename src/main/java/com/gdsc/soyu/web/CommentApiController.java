@@ -33,11 +33,11 @@ public class CommentApiController {
     @PostMapping("/{id}/comments")
     public Long CommentsSave(@PathVariable Long id, @RequestBody CommentSaveRequestDto requestDto){
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        return commentService.save(requestDto, id, user.getEmail());
+        return commentService.save(requestDto, id, user.getId());
     }
 
     @DeleteMapping("/{id}/comments/{commentId}")
-    public ResponseEntity delete(@PathVariable Long id, @PathVariable Long commentId) {
+    public ResponseEntity delete(@PathVariable Long commentId) {
         commentService.delete(commentId);
         return ResponseEntity.ok(commentId);
     }

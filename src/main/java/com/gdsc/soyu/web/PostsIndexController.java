@@ -56,23 +56,18 @@ public class PostsIndexController {
         PostsResponseDto dto = postsService.findById(id);
         List<Comment> comments = dto.getComments();
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
-
-        if (user != null) {
-            model.addAttribute("loginUserName", user.getName());
-            if (dto.getAuthor().equals(user.getName())) {
-                model.addAttribute("editAuth", true);
-            }
-
-            for (int i = 0; i < comments.size(); i++) {
-                boolean isWriter = comments.get(i).getUser().getId().equals(user.getId());
-                model.addAttribute("isWriter",isWriter);
-            }
-        }
-
         if(comments != null && !comments.isEmpty()){
             model.addAttribute("comments", comments);
 
         }
+        if (user != null) {
+            model.addAttribute("loginUserName", user.getName());
+            model.addAttribute("loginUserId",user.getId());
+            if (dto.getAuthor().equals(user.getName())) {
+                model.addAttribute("editAuth", true);
+            }
+        }
+
         model.addAttribute("posts", dto);
         return "posts-detail";
     }

@@ -32,6 +32,8 @@ public class CommentService {
     @Transactional
     public Long save(CommentSaveRequestDto requestDto, Long userId){
         Optional<User> userOptional = userRepository.findById(userId);
+        Posts posts=postsRepository.findById(postId).orElseThrow(()->
+                new IllegalArgumentException("댓글 쓰기 실패: 해당 게시글이 존재하지 않습니다."+postId));
         requestDto.setUserId(userId);
         requestDto.setUserName(userOptional.get().getName());
         Comment comment =requestDto.toEntity();
@@ -41,16 +43,9 @@ public class CommentService {
 
     /* DELETE */
     @Transactional
-    public void delete(HttpServletResponse response, SessionUser loginUser, Long commentId) throws IOException {
+    public void delete(Long commentId){
         Comment comment = commentRepository.findById(commentId).orElseThrow(() ->
                 new IllegalArgumentException("해당 댓글이 존재하지 않습니다. id=" + commentId));
-
-        if (comment.getUser().getEmail().equals(loginUser.getEmail())){
-            commentRepository.delete(comment);
-        }
-        else {
-            throw new RuntimeException("댓글 삭제 권한이 없습니다.");
-        }
+        commentRepository.delete(comment);
     }
-
 }

@@ -18,9 +18,9 @@ var main = {
             _this.commentSave();
         });
 
-        // $('.btn-comment-delete').on('click', function () {
-        //     _this.commentDelete(e.target.value);
-        // })
+        $('#btn-comment-delete').on('click', function () {
+            _this.commentDelete(e.target.value);
+        })
     },
     save : function () {
         var data = {
@@ -112,17 +112,18 @@ var main = {
         }
     },
 
-    commentDelete : function (commentId,isWriter) {
+    commentDelete : function (commentId,commentUserId) {
         var data = {
             postsId: $('#postsId').val(),
-            commentId: $('#commentId').val(),
-            isWriter: $('#isWriter').value,
-            sessionUserName: $('#sessionUserName').value
+            commentId: commentId,
+            commentUserId: commentUserId,
+            sessionUserId: $('#sessionUserId').val()
         }
-        console.log("isWriter : " + data.isWriter);
-        console.log("sessionUserName : " + data.sessionUserName);
+        console.log("commentUserId : " + data.commentUserId);
+        console.log("sessionUserId : " + data.sessionUserId);
+        console.log()
 
-        if (isWriter===true) {
+        if (data.commentUserId==data.sessionUserId) {
             $.ajax({
                 type: 'DELETE',
                 url: '/api/v1/posts/'+ data.postsId + '/comments/'+commentId,
@@ -140,8 +141,6 @@ var main = {
         }
 
     },
-
-
 };
 
 main.init();
